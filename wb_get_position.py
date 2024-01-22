@@ -1,6 +1,5 @@
 import requests
 
-
 def parser(art: int, query: str):
     page = 1
     headers = {
@@ -40,13 +39,12 @@ def parser(art: int, query: str):
         if not response:
             return 'end' 
         count = 0
-        print(page)
         for id_art in response['data']['products']:
             if id_art['id'] == art:
                 return (count, page)
             count += 1
         return None
-
+    
     while True:
         params['page'] = page
         res = parse(params, headers)
