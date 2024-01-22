@@ -46,7 +46,7 @@ def parser(art: int, query: str):
         return None
     
     while True:
-        params['page'] = page
+        params['page'] = str(page)
         res = parse(params, headers)
         if res  == 'error':
             return 'Сервис не работает.'
@@ -55,7 +55,13 @@ def parser(art: int, query: str):
         elif res is None:
             page += 1
         else:
-            return f'Скрипт нашел товар по запросу "{query}" с артикулом {art} на {res[0]} позиции, на {res[1]} странице'
+            return f'''
+            Скрипт нашел товар
+            по запросу "{query}" с артикулом {art} 
+            на {res[0]} позиции, 
+            на {res[1]} странице
+            Общая позиция - {res[1] * 20 + res[0]}
+            '''
 
 
 art = int(input('Введите артикул: '))
